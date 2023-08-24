@@ -1,0 +1,61 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaXmlTest.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"     
+        xmlns:pages="using:AvaloniaXmlTest.Pages"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+        mc:Ignorable="d" d:DesignWidth="1400" d:DesignHeight="885"
+        x:Class="AvaloniaXmlTest.Views.MainWindow"
+        Icon="{x:Null}"
+        Title="AvaloniaXmlTest"
+        FontSize="14"
+        Foreground="{StaticResource SystemBaseHighColor}"
+        TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+        ExtendClientAreaToDecorationsHint="True" 
+        Height="860" Width="1420" CanResize="False">
+
+  <Window.DataContext>
+    <vm:MainWindowViewModel/>
+  </Window.DataContext>
+
+  <i:Interaction.Behaviors>
+    <ia:EventTriggerBehavior EventName="Loaded">
+      <ia:InvokeCommandAction Command="{Binding OnWindowLoaded}" />
+    </ia:EventTriggerBehavior>
+    <ia:EventTriggerBehavior EventName="Closing">
+      <ia:InvokeCommandAction Command="{Binding OnWindowClosing}" />
+    </ia:EventTriggerBehavior>
+  </i:Interaction.Behaviors>
+  
+  <Panel>
+    <DockPanel HorizontalAlignment="Stretch">
+      <ExperimentalAcrylicBorder DockPanel.Dock="Left" Width="220">
+        <ExperimentalAcrylicBorder.Material>
+          <ExperimentalAcrylicMaterial TintColor="Black" MaterialOpacity="0.85" TintOpacity="1" BackgroundSource="Digger" />
+        </ExperimentalAcrylicBorder.Material>
+        <TextBlock Text="XML Test" HorizontalAlignment="Center" Margin="0 40 0 0" FontSize="16"/>
+      </ExperimentalAcrylicBorder>
+        
+      <ExperimentalAcrylicBorder IsHitTestVisible="False">
+        <ExperimentalAcrylicBorder.Material>
+          <ExperimentalAcrylicMaterial TintColor="#222222" MaterialOpacity="0.85" TintOpacity="1" />
+        </ExperimentalAcrylicBorder.Material>
+        <TextBlock Text="{Binding #TabControl.SelectedItem.Header}" Margin="40 20" FontSize="32" FontWeight="Light" />
+      </ExperimentalAcrylicBorder>
+    </DockPanel>          
+    
+  <TabControl x:Name="TabControl" Classes="sidebar" Margin="0 40 0 20">
+    <TabItem Header="Ручной режим">
+      <pages:ManualModeView />
+    </TabItem>
+
+    <TabItem Header="Автоматический режим">
+      <pages:AutoModeView />
+    </TabItem>
+    
+  </TabControl>
+  </Panel>
+</Window>

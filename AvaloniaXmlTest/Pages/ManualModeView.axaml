@@ -1,0 +1,315 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1150" d:DesignHeight="800"
+             xmlns:domain="using:AvaloniaXmlTest.Domains"
+             xmlns:relays="using:AvaloniaXmlTest.Models"
+             xmlns:vm="using:AvaloniaXmlTest.ViewModels"
+             x:Class="AvaloniaXmlTest.Pages.ManualModeView">
+
+  <DockPanel Margin="40 0" Background="Transparent">
+    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Spacing="10">
+      
+      <!--команды 1-->
+      <HeaderedContentControl Header="Команды 1" Background="Gray">
+        
+        <StackPanel Spacing="5">
+          <StackPanel Orientation="Horizontal" Spacing="5">
+            <ItemsRepeater Items="{Binding Device.DeviceParts[0].RelaysX}">
+              <ItemsRepeater.ItemTemplate>
+                <DataTemplate DataType="relays:RelayModel">
+                  <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                                IsChecked="{Binding IsEnabled, Mode=TwoWay}"
+                                Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+              </ItemsRepeater.ItemTemplate>
+              <ItemsRepeater.Layout>
+                <StackLayout Spacing="5"/>
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
+
+            <ItemsRepeater Items="{Binding Device.DeviceParts[0].RelaysY}">
+              <ItemsRepeater.ItemTemplate>
+                <DataTemplate DataType="relays:RelayModel">
+                  <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                                IsChecked="{Binding IsEnabled}"
+                                Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+              </ItemsRepeater.ItemTemplate>
+              <ItemsRepeater.Layout>
+                <StackLayout Spacing="5"/>
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
+
+            <ItemsRepeater Items="{Binding Device.DeviceParts[1].RelaysX}">
+              <ItemsRepeater.ItemTemplate>
+                <DataTemplate DataType="relays:RelayModel">
+                  <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                                IsChecked="{Binding IsEnabled}"
+                                Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+              </ItemsRepeater.ItemTemplate>
+              <ItemsRepeater.Layout>
+                <StackLayout Spacing="5"/>
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
+
+            <ItemsRepeater Items="{Binding Device.DeviceParts[1].RelaysY}">
+              <ItemsRepeater.ItemTemplate>
+                <DataTemplate DataType="relays:RelayModel">
+                  <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                                IsChecked="{Binding IsEnabled}"
+                                Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+              </ItemsRepeater.ItemTemplate>
+              <ItemsRepeater.Layout>
+                <StackLayout Spacing="5"/>
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
+
+            <ItemsRepeater Items="{Binding Device.DeviceParts[2].RelaysX}">
+              <ItemsRepeater.ItemTemplate>
+                <DataTemplate DataType="relays:RelayModel">
+                  <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                                IsChecked="{Binding IsEnabled}"
+                                Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+              </ItemsRepeater.ItemTemplate>
+              <ItemsRepeater.Layout>
+                <StackLayout Spacing="5"/>
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
+
+            <ItemsRepeater Items="{Binding Device.DeviceParts[2].RelaysY}">
+              <ItemsRepeater.ItemTemplate>
+                <DataTemplate DataType="relays:RelayModel">
+                  <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                                IsChecked="{Binding IsEnabled}"
+                                Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+                </DataTemplate>
+              </ItemsRepeater.ItemTemplate>
+              <ItemsRepeater.Layout>
+                <StackLayout Spacing="5"/>
+              </ItemsRepeater.Layout>
+            </ItemsRepeater>
+          </StackPanel>
+
+          <Grid ColumnDefinitions="1*, 1*, 1*">
+            <ToggleButton
+              Content="{Binding Device.DeviceParts[0].RelayCK}"
+              HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+              IsChecked="{Binding Device.DeviceParts[0].RelayCK.IsEnabled}"
+              Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[0].RelayCK}" />
+            <ToggleButton
+              Grid.Column="1" Margin="5 0 0 0"
+              Content="{Binding Device.DeviceParts[1].RelayCK}"
+              HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+              IsChecked="{Binding Device.DeviceParts[1].RelayCK.IsEnabled}"
+              Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[1].RelayCK}"/>
+            <ToggleButton
+              Grid.Column="2" Margin="5 0 0 0"
+              Content="{Binding Device.DeviceParts[2].RelayCK}"
+              HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+              IsChecked="{Binding Device.DeviceParts[2].RelayCK.IsEnabled}"
+              Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[2].RelayCK}"/>
+          </Grid>
+        </StackPanel>
+      </HeaderedContentControl>
+      
+      <!--команды 2-->
+      <HeaderedContentControl Header="Команды 2" Background="Gray">
+        <StackPanel Orientation="Horizontal" Spacing="5">
+          <ItemsRepeater Items="{Binding Device.DeviceParts[0].RelaysK}">
+            <ItemsRepeater.ItemTemplate>
+              <DataTemplate DataType="relays:RelayModel">
+                <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                              IsChecked="{Binding IsEnabled}"
+                              Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+              </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+              <StackLayout Spacing="5"/>
+            </ItemsRepeater.Layout>
+          </ItemsRepeater>
+
+          <ItemsRepeater Items="{Binding Device.DeviceParts[1].RelaysK}">
+            <ItemsRepeater.ItemTemplate>
+              <DataTemplate DataType="relays:RelayModel">
+                <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                              IsChecked="{Binding IsEnabled}"
+                              Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+              </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+              <StackLayout Spacing="5"/>
+            </ItemsRepeater.Layout>
+          </ItemsRepeater>
+
+          <ItemsRepeater Items="{Binding Device.DeviceParts[2].RelaysK}">
+            <ItemsRepeater.ItemTemplate>
+              <DataTemplate DataType="relays:RelayModel">
+                <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                              IsChecked="{Binding IsEnabled}"
+                              Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+              </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+              <StackLayout Spacing="5"/>
+            </ItemsRepeater.Layout>
+          </ItemsRepeater>
+        </StackPanel>
+      </HeaderedContentControl>
+    
+      <!-- команды 3 -->
+      <HeaderedContentControl Header="Команды 3" Background="Gray">
+        <StackPanel Orientation="Horizontal" Spacing="5">
+          <StackPanel Spacing="5">
+            <ToggleButton Content="{Binding Device.DeviceParts[0].RelayKB}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[0].RelayKB.IsEnabled}" 
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[0].RelayKB}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[0].RelayKBGen}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[0].RelayKBGen.IsEnabled}" 
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[0].RelayKBGen}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[1].RelayKB}"  
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[1].RelayKB.IsEnabled}" 
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[1].RelayKB}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[1].RelayKBGen}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[1].RelayKBGen.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[1].RelayKBGen}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[2].RelayKB}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                          IsChecked="{Binding Device.DeviceParts[2].RelayKB.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[2].RelayKB}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[2].RelayKBGen}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                          IsChecked="{Binding Device.DeviceParts[2].RelayKBGen.IsEnabled}" 
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[2].RelayKBGen}"/>
+          </StackPanel>
+
+          <StackPanel Spacing="5">
+            <ToggleButton Content="{Binding Device.DeviceParts[0].RelayOnACC}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                          IsChecked="{Binding Device.DeviceParts[0].RelayOnACC.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[0].RelayOnACC}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[0].RelayOffACC}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" 
+                          IsChecked="{Binding Device.DeviceParts[0].RelayOffACC.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[0].RelayOffACC}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[1].RelayOnACC}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[1].RelayOnACC.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[1].RelayOnACC}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[1].RelayOffACC}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[1].RelayOffACC.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[1].RelayOffACC}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[2].RelayOnACC}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[2].RelayOnACC.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[2].RelayOnACC}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[2].RelayOffACC}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[2].RelayOffACC.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[2].RelayOffACC}"/>
+          </StackPanel>
+
+          <StackPanel Spacing="5">
+            <ToggleButton Content="{Binding Device.DeviceParts[0].RelayK3}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[0].RelayK3.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[0].RelayK3}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[0].RelayK3Gen}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[0].RelayK3Gen.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[0].RelayK3Gen}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[1].RelayK3}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[1].RelayK3.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[1].RelayK3}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[1].RelayK3Gen}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[1].RelayK3Gen.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[1].RelayK3Gen}"/>
+            <ToggleButton Content="{Binding Device.DeviceParts[2].RelayK3}" 
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[2].RelayK3.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[2].RelayK3}" />
+            <ToggleButton Content="{Binding Device.DeviceParts[2].RelayK3Gen}"
+                          HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+                          IsChecked="{Binding Device.DeviceParts[2].RelayK3Gen.IsEnabled}"
+                          Command="{Binding SendCommand}" CommandParameter="{Binding Device.DeviceParts[2].RelayK3Gen}"/>
+          </StackPanel>
+        </StackPanel>
+      </HeaderedContentControl>
+
+      <!-- команды 4 -->
+      <HeaderedContentControl Header="Команды 4"  Background="Gray">
+        <StackPanel Orientation="Horizontal" Spacing="5">
+          <ItemsRepeater Items="{Binding Device.DeviceParts[0].RelaysA}">
+            <ItemsRepeater.ItemTemplate>
+              <DataTemplate DataType="relays:RelayModel">
+                <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                              IsChecked="{Binding IsEnabled}"
+                              Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+              </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+              <StackLayout Spacing="5"/>
+            </ItemsRepeater.Layout>
+          </ItemsRepeater>
+
+          <ItemsRepeater Items="{Binding Device.DeviceParts[1].RelaysA}">
+            <ItemsRepeater.ItemTemplate>
+              <DataTemplate DataType="relays:RelayModel">
+                <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                              IsChecked="{Binding IsEnabled}"
+                              Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+              </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+              <StackLayout Spacing="5"/>
+            </ItemsRepeater.Layout>
+          </ItemsRepeater>
+
+          <ItemsRepeater Items="{Binding Device.DeviceParts[2].RelaysA}">
+            <ItemsRepeater.ItemTemplate>
+              <DataTemplate DataType="relays:RelayModel">
+                <ToggleButton MinWidth="55" Content="{Binding Name}" FontSize="13" HorizontalContentAlignment="Center"
+                              IsChecked="{Binding IsEnabled}"
+                              Command="{Binding $parent[ItemsRepeater].DataContext.SendCommand}" CommandParameter="{Binding}"/>
+              </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+            <ItemsRepeater.Layout>
+              <StackLayout Spacing="5"/>
+            </ItemsRepeater.Layout>
+          </ItemsRepeater>
+        </StackPanel>
+      </HeaderedContentControl>
+    </StackPanel>
+
+    <DockPanel DockPanel.Dock="Bottom" Margin="0 25 0 0">
+      <!-- Настройки -->
+
+      <CheckBox VerticalAlignment="Top" IsChecked="{Binding IsTimeoutChecked}" Margin="0 0 20 0">
+        <CheckBox.Content>
+          <StackPanel Spacing="10" MinWidth="130">
+            <TextBlock Text="Т команды, мс"  />
+            <NumericUpDown Value="{Binding Tms}" HorizontalContentAlignment="Center"/>
+          </StackPanel>
+        </CheckBox.Content>
+      </CheckBox>       
+     
+      
+      <!-- Лог -->
+      <TextBox IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LogText}" CaretIndex="{Binding TextBoxCaretIndex}" Height="220"/>      
+    </DockPanel>  
+  </DockPanel>
+</UserControl>
+
+    
+

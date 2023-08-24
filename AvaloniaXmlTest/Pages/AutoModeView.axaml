@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1120" d:DesignHeight="740"
+             xmlns:domain="using:AvaloniaXmlTest.Domains"
+             xmlns:vm="using:AvaloniaXmlTest.ViewModels"
+             x:Class="AvaloniaXmlTest.Pages.AutoModeView">
+    
+  <DockPanel Margin="40 0" LastChildFill="True">
+    <DockPanel DockPanel.Dock="Top" LastChildFill="False">   
+      <StackPanel Spacing="10" DockPanel.Dock="Left">
+        <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Top">
+          <TextBox Watermark="Файл теста" MinWidth="170" IsReadOnly="True" Text="{Binding FileInfo.Name}"/>
+          <Button Content="Обзор" MinWidth="70" HorizontalContentAlignment="Center" Command="{Binding OpenFileCommand}"/>
+        </StackPanel>      
+        <Button Content="{Binding StartBtnText}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Command="{Binding StartTestCommand}"/>
+        <ProgressBar IsIndeterminate="{Binding StartProgressBar}" />
+      </StackPanel>
+    </DockPanel>
+   
+    <!-- Лог -->
+    <TextBox DockPanel.Dock="Bottom" Margin="0 20 0 0" IsReadOnly="True" TextWrapping="Wrap" Text="{Binding LogText}" CaretIndex="{Binding TextBoxCaretIndex}" Height="620"/>
+  </DockPanel>
+</UserControl>
